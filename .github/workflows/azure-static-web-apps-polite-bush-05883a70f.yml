@@ -28,11 +28,8 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
-          output_location: "/package.json" # Built app content directory - optional
-              - name: Install Tailwind
-              run: npm install -D tailwindcss && npx tailwindcss init
-              - name: Build Tailwind
-              run: npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+          output_location: "/dist" # Built app content directory - optional
+          app_build_command: 'npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch'
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
