@@ -11,12 +11,11 @@ on:
 
 jobs:
   build_and_deploy_job:
-    - name: Setup NPM
-    uses: actions/setup-node@v2
-    - name: Install dependencies
-    run: cd themes/medvind && npm install && cd ../..
-    - name: Build TailwindCSS
-    run: cd themes/medvind && npm run production && cd ../..
+    - name: Install Tailwind
+    run: npm install -D tailwindcss && npx tailwindcss init
+    - name: Build Tailwind
+    run: npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
